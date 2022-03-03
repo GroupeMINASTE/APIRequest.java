@@ -11,6 +11,13 @@ class APIConfiguration(
     val port: Int? = null,
 ) {
 
+    companion object {
+
+        // Default configuration
+        var current: APIConfiguration? = null
+
+    }
+
     // Configuration variables
     var headers: () -> HashMap<String, String> = { HashMap() }
     var encoder: APIEncoder = JSONAPIEncoder()

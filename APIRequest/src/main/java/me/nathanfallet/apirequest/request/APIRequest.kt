@@ -11,10 +11,11 @@ import java.util.concurrent.Executors
 class APIRequest(
     private val method: String,
     private val path: String,
-    private val configuration: APIConfiguration
+    configuration: APIConfiguration? = APIConfiguration.current
 ) {
 
     // Object properties
+    private val configuration: APIConfiguration = configuration!!
     private val headers: HashMap<String, String> = HashMap()
     private val queryItems: HashMap<String, Any> = HashMap()
     private var body: ByteArray? = null

@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(recyclerView)
 
         // Create configuration
-        val config = APIConfiguration("jsonplaceholder.typicode.com").also {
+        APIConfiguration.current = APIConfiguration("jsonplaceholder.typicode.com").also {
             // Optional personalization
             it.headers = {
                 // Add custom headers (eg: an access token)
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Create a request
-        APIRequest("GET", "/comments", config)
+        APIRequest("GET", "/comments")
             .with("postId", 1)
             .execute { result, status ->
                 if (result is JSONArray) {
