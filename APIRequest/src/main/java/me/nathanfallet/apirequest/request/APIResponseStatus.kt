@@ -1,6 +1,6 @@
 package me.nathanfallet.apirequest.request
 
-enum class APIResponseStatus(private val code: Int) {
+enum class APIResponseStatus(val code: Int) {
 
     // 1xx
     CONTINUE(100),
@@ -102,6 +102,7 @@ enum class APIResponseStatus(private val code: Int) {
         /*
          * Return the status associated with the HTTP status code, or unknown if the status is not registered
          */
+        @JvmStatic
         fun status(code: Int): APIResponseStatus {
             return values().firstOrNull { it.code == code } ?: UNKNOWN
         }

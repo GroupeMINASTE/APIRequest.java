@@ -14,6 +14,7 @@ class APIConfiguration @JvmOverloads constructor(
     companion object {
 
         // Default configuration
+        @JvmStatic
         var current: APIConfiguration? = null
 
     }

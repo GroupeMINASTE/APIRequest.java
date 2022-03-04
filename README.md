@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'me.nathanfallet.apirequest:apirequest:1.0.1'
+    implementation 'me.nathanfallet.apirequest:apirequest:1.0.2'
 }
 ```
 
