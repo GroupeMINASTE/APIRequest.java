@@ -8,7 +8,7 @@ import java.net.URL
 import java.util.*
 import java.util.concurrent.Executors
 
-class APIRequest(
+class APIRequest @JvmOverloads constructor(
     private val method: String,
     private val path: String,
     configuration: APIConfiguration? = APIConfiguration.current

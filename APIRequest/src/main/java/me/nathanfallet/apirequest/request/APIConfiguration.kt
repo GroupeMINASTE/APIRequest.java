@@ -5,7 +5,7 @@ import me.nathanfallet.apirequest.decoder.JSONAPIDecoder
 import me.nathanfallet.apirequest.encoder.APIEncoder
 import me.nathanfallet.apirequest.encoder.JSONAPIEncoder
 
-class APIConfiguration(
+class APIConfiguration @JvmOverloads constructor(
     val host: String,
     val scheme: String = "https",
     val port: Int? = null,
