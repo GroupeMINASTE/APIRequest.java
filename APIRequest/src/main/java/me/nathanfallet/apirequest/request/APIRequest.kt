@@ -94,7 +94,7 @@ class APIRequest @JvmOverloads constructor(
             return sb.toString()
         }
 
-    fun execute(completionHandler: (result: Any?, status: APIResponseStatus?) -> Unit): APIRequest {
+    fun execute(completionHandler: (result: Any?, status: APIResponseStatus) -> Unit): APIRequest {
         executor.execute {
             url?.let { url ->
                 try {
@@ -147,7 +147,7 @@ class APIRequest @JvmOverloads constructor(
         return this
     }
 
-    private fun end(data: Any?, status: APIResponseStatus?, completionHandler: (result: Any?, status: APIResponseStatus?) -> Unit) {
+    private fun end(data: Any?, status: APIResponseStatus, completionHandler: (result: Any?, status: APIResponseStatus) -> Unit) {
         handler.post {
             completionHandler(data, status)
         }
