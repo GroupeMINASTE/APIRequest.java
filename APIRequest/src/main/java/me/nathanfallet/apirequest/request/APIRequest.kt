@@ -5,8 +5,8 @@ import android.os.Looper
 import java.net.HttpURLConnection
 import java.net.URI
 import java.net.URL
-import java.util.*
 import java.util.concurrent.Executors
+import java.util.concurrent.Future
 
 class APIRequest @JvmOverloads constructor(
     private val method: String,
@@ -24,6 +24,7 @@ class APIRequest @JvmOverloads constructor(
     // Task properties
     private val executor = Executors.newSingleThreadExecutor()
     private val handler = Handler(Looper.getMainLooper())
+    private var task: Future<*>? = null
 
     /*
      * Add a get parameter
@@ -95,7 +96,7 @@ class APIRequest @JvmOverloads constructor(
         }
 
     fun execute(completionHandler: (result: Any?, status: APIResponseStatus) -> Unit): APIRequest {
-        executor.execute {
+        task = executor.submit {
             url?.let { url ->
                 try {
                     // Create the request based on give parameters
@@ -147,7 +148,20 @@ class APIRequest @JvmOverloads constructor(
         return this
     }
 
-    private fun end(data: Any?, status: APIResponseStatus, completionHandler: (result: Any?, status: APIResponseStatus) -> Unit) {
+    /*
+     * Cancel the ongoing request
+     */
+    fun cancel(): APIRequest {
+        task?.cancel(true)
+        task = null
+        return this
+    }
+
+    private fun end(
+        data: Any?,
+        status: APIResponseStatus,
+        completionHandler: (result: Any?, status: APIResponseStatus) -> Unit
+    ) {
         handler.post {
             completionHandler(data, status)
         }
