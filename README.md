@@ -46,7 +46,7 @@ See the embedded app for a sample
 
 ## Donate to the developer
 
-Feel free to make a donation to help the developer to make more great content! [Donate now](https://paypal.me/NathanFallet)
+Feel free to make a donation to help the developer to make more great content! [Donate now](https://paypal.me/paynathanfallet)
 
 ## iOS version
 
